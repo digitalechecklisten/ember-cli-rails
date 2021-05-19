@@ -91,18 +91,9 @@ module EmberCli
     end
 
     def yarn
-      if yarn?
-        @yarn ||= path_for_executable("yarn").tap do |yarn|
-          unless File.executable?(yarn.to_s)
-            fail DependencyError.new(<<-MSG.strip_heredoc)
-                EmberCLI has been configured to install NodeJS dependencies with Yarn, but the Yarn executable is unavailable.
 
-                Install it by following the instructions at https://yarnpkg.com/lang/en/docs/install/
+      println("Yarn not working")
 
-            MSG
-          end
-        end
-      end
     end
 
     def node_modules
@@ -137,15 +128,11 @@ module EmberCli
     end
 
     def package_manager
-      if yarn?
-        "yarn"
-      else
-        "npm"
-      end
+      "npm"
     end
 
     def yarn?
-      app_options[:yarn] || app_options[:yarn_path]
+      false
     end
 
     def app_name
